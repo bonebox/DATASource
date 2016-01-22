@@ -53,15 +53,15 @@ public class DATASource: NSObject {
     private var sectionName: String?
     internal var cellIdentifier: String
     private weak var mainContext: NSManagedObjectContext?
-    private var tableConfigurationBlock: ((cell: UITableViewCell, item: NSManagedObject, indexPath: NSIndexPath) -> ())?
-    private var collectionConfigurationBlock: ((cell: UICollectionViewCell, item: NSManagedObject, indexPath: NSIndexPath) -> ())?
+    public private(set) var tableConfigurationBlock: ((cell: UITableViewCell, item: NSManagedObject, indexPath: NSIndexPath) -> ())?
+    private private(set) var collectionConfigurationBlock: ((cell: UICollectionViewCell, item: NSManagedObject, indexPath: NSIndexPath) -> ())?
 
     /**
      The DATASource's delegate. Used for overwritting methods overwritten by DATASource. Also used to be notified of object changes.
      */
     public weak var delegate: DATASourceDelegate?
 
-    internal var fetchedResultsController: NSFetchedResultsController
+    public private(set) var fetchedResultsController: NSFetchedResultsController
 
     internal lazy var objectChanges: [NSFetchedResultsChangeType : [NSIndexPath]] = {
         return [NSFetchedResultsChangeType : [NSIndexPath]]()
@@ -157,7 +157,7 @@ public class DATASource: NSObject {
         return self.fetchedResultsController.sections?[section].name
     }
 
-    internal func configureCell(cell: UIView, indexPath: NSIndexPath) {
+    public func configureCell(cell: UIView, indexPath: NSIndexPath) {
         var item: NSManagedObject?
 
         let rowIsInsideBounds = indexPath.row < self.fetchedResultsController.fetchedObjects?.count
