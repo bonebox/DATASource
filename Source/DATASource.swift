@@ -54,7 +54,7 @@ public class DATASource: NSObject {
     internal var cellIdentifier: String
     private weak var mainContext: NSManagedObjectContext?
     public private(set) var tableConfigurationBlock: ((cell: UITableViewCell, item: NSManagedObject, indexPath: NSIndexPath) -> ())?
-    private private(set) var collectionConfigurationBlock: ((cell: UICollectionViewCell, item: NSManagedObject, indexPath: NSIndexPath) -> ())?
+    public private(set) var collectionConfigurationBlock: ((cell: UICollectionViewCell, item: NSManagedObject, indexPath: NSIndexPath) -> ())?
 
     /**
      The DATASource's delegate. Used for overwritting methods overwritten by DATASource. Also used to be notified of object changes.
